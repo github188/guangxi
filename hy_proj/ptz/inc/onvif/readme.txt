@@ -1,0 +1,1 @@
+由gsoap生成的onvif client框架

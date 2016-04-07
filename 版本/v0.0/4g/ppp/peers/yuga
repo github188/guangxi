@@ -1,0 +1,24 @@
+nodetach
+lock
+#/dev/ttyUSB0
+/dev/ttyUSB3
+921600
+user "ctnet@mycdma.cn"
+password "vnet.mobi"
+crtscts
+modem
+hide-password
+usepeerdns
+noauth
+noipdefault
+novj
+novjccomp
+noccp
+defaultroute
+lcp-echo-interval 30
+lcp-echo-failure 20
+persist
+ipcp-accept-local
+ipcp-accept-remote
+connect 'chat -s -v -f /etc/ppp/peers/chat-yuga-connect'
+disconnect 'chat -s -v -f /etc/ppp/peers/chat-yuga-disconnect'
