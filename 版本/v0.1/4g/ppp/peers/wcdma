@@ -1,0 +1,24 @@
+nodetach
+lock
+#/dev/ttyUSB0
+/dev/ttyUSB3
+115200
+user "card"
+password "card"
+crtscts
+show-password
+usepeerdns
+noauth
+noipdefault
+novj
+novjccomp
+noccp
+defaultroute
+lcp-echo-interval 30
+lcp-echo-failure 20
+persist
+ipcp-accept-local
+ipcp-accept-remote
+connect '/usr/sbin/chat -s -v -f /etc/ppp/peers/wcdma-chat-connect'
+disconnect '/usr/sbin/chat -s -v -f /etc/ppp/peers/wcdma-chat-disconnect'
+

@@ -1,0 +1,49 @@
+#! /bin/sh 
+#
+# This is an init script for openembedded
+# Copy it to /etc/init.d/thttpd and type
+# > update-rc.d thttpd defaults 60
+#
+
+
+case "$1" in
+  start)
+    echo -en "Starting insert kernel module...\n"
+    cd /root
+    ./loadmodules.sh >/dev/null&
+    cd -
+
+    echo -en "Starting decode\n"
+    cd /root
+    ./decode >/dev/null&
+    cd -
+
+    echo -en "Starting a9 manage\n"
+    if [ -x /root/a9_management/a9_manage ]; then
+	cd /root/a9_management
+	./a9_manage >/dev/null&  
+	cd -
+    fi
+    echo "."
+	
+    ;;
+  stop)
+    echo -n "Stopping decode"
+    pid=`pidof decode`
+    kill -9 ${pid}
+    echo "."
+
+    echo -n "Stopping a9_manage"
+    pid=`pidof a9_manage`
+    kill -9 ${pid}
+    echo "."
+
+    rmmod cmemk.ko 2>/dev/null
+    rmmod dsplinkk.ko 2>/dev/null 
+    ;;
+  *)
+    echo "Usage: /etc/init.d/ipcserver {start|stop}"
+    exit 1
+esac
+
+exit 0
