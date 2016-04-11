@@ -72,7 +72,7 @@ int main()
     start_recv_order_from_mk60_thread();
     hy_start_watchdog_thread();
 
-    //hy_sleep(30);
+    hy_sleep(30);
     ptz_ctrl_init();
     hy_start_decode_thread();
     while(1)

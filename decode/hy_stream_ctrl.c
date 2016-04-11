@@ -27,6 +27,7 @@
 #define PICTURE_SIZE "1280x720"//用于发送给汇源后台
 #endif
 
+static int last_played_channel = -1;
 static HY_BOOL stream_is_opened = HY_FALSE;
 static char current_play_cmd[256];
 
@@ -178,11 +179,14 @@ int hy_simple_stream_get_original_frame(hy_u8 channel, hy_s8 **p_data, hy_u32 *d
    avformat_set_packet_miss_flag();
    avcodec_set_decode_error_flag();
    avcodec_set_next_picture_error_flag();
+   avcodec_set_av_caval_error_flag();
+   avcodec_set_h264_error_flag();
 
    ret = av_read_frame(rtsp_fmt_ctx[channel], rtsp_packets[channel]);
    if( ret == 0 )
    {
-        if (avformat_get_packet_miss_flag() == -1 || avcodec_get_next_picture_error_flag() == -1 || avcodec_get_decode_error_flag() == -1)
+        if (avformat_get_packet_miss_flag() == -1 || avcodec_get_next_picture_error_flag() == -1 || avcodec_get_decode_error_flag() == -1
+            || avcodec_get_av_caval_error_flag() == -1 || avcodec_get_h264_error_flag() == -1)
         {
             //hy_zlog_info("miss package");
             ret = -2;

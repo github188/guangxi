@@ -44,11 +44,17 @@
 
 extern int av_decode_error_flag;
 extern int av_next_picture_error_flag;
+extern int av_caval_error_flag;
+extern int av_h264_error_flag;
 
 int avcodec_get_decode_error_flag(void);
 void avcodec_set_decode_error_flag(void);
 int avcodec_get_next_picture_error_flag(void);
 void avcodec_set_next_picture_error_flag(void);
+int avcodec_get_av_caval_error_flag(void);
+void avcodec_set_av_caval_error_flag(void);
+int avcodec_get_h264_error_flag(void);
+void avcodec_set_h264_error_flag(void);
 
 /**
  * @defgroup libavc Encoding/Decoding Library

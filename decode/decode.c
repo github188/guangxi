@@ -51,7 +51,7 @@
 //};
 
 //#define VENC_RECORD_YUV
-#define ALARM_TEST
+//#define ALARM_TEST
 #define CONVERT
 #define OFFSETINFO 1280*600
 /* Align buffers to this cache line size (in bytes)*/
@@ -436,7 +436,7 @@ void *hy_decode_thread_cb(void *s)
         }
 
         FrameNum += 1;
-        hy_zlog_info("Frame Num = %d \n", FrameNum);
+        //hy_zlog_info("Frame Num = %d \n", FrameNum);
 
         /*切换通道后要过一段时间才检验*/
         if (FrameNum < 4)
